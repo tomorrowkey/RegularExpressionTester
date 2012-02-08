@@ -146,8 +146,9 @@ pre.error {
 		</div>
 		<footer>
 			<small>
-				<a href="http://www.facebook.com/tomorrowkey" class="minilink">Facebook</a>
-				&nbsp;/&nbsp;
+				<a href="https://github.com/tomorrowkey/RegularExpressionTester" class="minilink">Source code</a> / 
+				<a href="http://d.hatena.ne.jp/tomorrowkey/">Blog</a>&nbsp;
+				<a href="http://www.facebook.com/tomorrowkey" class="minilink">Facebook</a>&nbsp;
 				<a href="http://twitter.com/tomorrowkey" class="minilink">Twitter</a>
 			</small>
 			<br />
