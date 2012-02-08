@@ -1,0 +1,14 @@
+target/**
+localrepo/**
+.settings/**
+.classpath
+.project
+.factorypath
+.apt_generated
+war/WEB-INF/classes/**
+war/WEB-INF/appengine-generated/**
+war/WEB-INF/lib/**
+eclipse.lib/**
+src/test/java/org/slim3/tester/**
+build/**
+gen/**
