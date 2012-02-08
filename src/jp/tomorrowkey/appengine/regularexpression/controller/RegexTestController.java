@@ -14,15 +14,6 @@ import jp.tomorrowkey.appengine.regularexpression.controller.model.RegexTestResu
 
 public class RegexTestController extends Controller {
 
-    protected String param(CharSequence name, String defaultValue) {
-        String value = param(name);
-        if (value == null) {
-            return defaultValue;
-        } else {
-            return value;
-        }
-    }
-
     @Override
     protected Navigation run() throws Exception {
         String targetText = param("target_text");
