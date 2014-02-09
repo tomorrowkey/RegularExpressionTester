@@ -35,7 +35,11 @@ public class RegexTestController extends Controller {
         result.setText(targetText);
         result.setMatches(matcher.matches());
         matcher.reset();
-        result.setReplacedText(matcher.replaceAll(replacePattern));
+        try {
+            result.setReplacedText(matcher.replaceAll(replacePattern));
+        } catch (IllegalArgumentException e) {
+            throw new BadParameterException(e.getMessage());
+        }
 
         matcher.reset();
         while (matcher.find()) {
