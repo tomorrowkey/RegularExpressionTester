@@ -1,16 +1,17 @@
 package jp.tomorrowkey.appengine.regularexpression.controller;
 
+import jp.tomorrowkey.appengine.regularexpression.controller.model.Group;
+import jp.tomorrowkey.appengine.regularexpression.controller.model.RegexTestResult;
+import jp.tomorrowkey.appengine.regularexpression.controller.model.RegexTestResultGen;
+
 import org.slim3.controller.Controller;
 import org.slim3.controller.Navigation;
+import org.slim3.util.StringUtil;
 
 import java.io.PrintWriter;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.regex.PatternSyntaxException;
-
-import jp.tomorrowkey.appengine.regularexpression.controller.model.Group;
-import jp.tomorrowkey.appengine.regularexpression.controller.model.RegexTestResult;
-import jp.tomorrowkey.appengine.regularexpression.controller.model.RegexTestResultGen;
 
 public class RegexTestController extends Controller {
 
@@ -19,6 +20,12 @@ public class RegexTestController extends Controller {
         String targetText = param("target_text");
         String matchPattern = param("match_pattern");
         String replacePattern = param("replace_pattern");
+
+        if (StringUtil.isEmpty(targetText))
+            throw new BadParameterException("Target text must not be empty");
+
+        if (StringUtil.isEmpty(matchPattern))
+            throw new BadParameterException("Regex pattern must not be empty");
 
         Pattern pattern = Pattern.compile(matchPattern);
         Matcher matcher = pattern.matcher(targetText);
@@ -50,7 +57,8 @@ public class RegexTestController extends Controller {
 
     @Override
     protected Navigation handleError(Throwable error) throws Throwable {
-        if (error instanceof PatternSyntaxException) {
+        if (error instanceof PatternSyntaxException
+            || error instanceof BadParameterException) {
             response.setStatus(400);
             response.setContentType("application/json");
             response.setCharacterEncoding("utf-8");
@@ -60,6 +68,15 @@ public class RegexTestController extends Controller {
         }
 
         throw error;
+    }
+
+    private static class BadParameterException extends RuntimeException {
+
+        private static final long serialVersionUID = 1L;
+
+        public BadParameterException(String message) {
+            super(message);
+        }
     }
 
 }
