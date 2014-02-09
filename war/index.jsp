@@ -152,7 +152,7 @@ pre.error {
 				<a href="http://twitter.com/tomorrowkey" class="minilink">Twitter</a>
 			</small>
 			<br />
-			<small>'Java regex tester' Coptyright 2012 tomorrowkey All
+			<small>'Java regex tester' Coptyright tomorrowkey All
 				Rights Reserved.
 			</small>
 		</footer>
