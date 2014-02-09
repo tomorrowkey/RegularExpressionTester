@@ -58,7 +58,8 @@ public class RegexTestController extends Controller {
     @Override
     protected Navigation handleError(Throwable error) throws Throwable {
         if (error instanceof PatternSyntaxException
-            || error instanceof BadParameterException) {
+            || error instanceof BadParameterException
+            || error instanceof IndexOutOfBoundsException) {
             response.setStatus(400);
             response.setContentType("application/json");
             response.setCharacterEncoding("utf-8");
