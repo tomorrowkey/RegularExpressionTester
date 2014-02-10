@@ -8,13 +8,12 @@
 <link href='http://fonts.googleapis.com/css?family=Gudea:400,700'
 	rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
-<link href="./css/bootstrap.css" rel="stylesheet">
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
 <style type="text/css">
 * {
 	font-family: 'Gudea', sans-serif;
 }
 input[type='text'], textarea {
-	width: 780px;
 	padding: 10px;
 	font-family: 'Gudea', sans-serif;
 	font-size: 17px;
@@ -25,6 +24,9 @@ form {
 header {
 	margin-top: 10px;
 	margin-bottom: 10px;
+}
+.contents {
+	width: 780px;
 }
 .page {
 	width: 800px;
@@ -102,24 +104,24 @@ pre.error {
 			<form id="test_form" action="javascript:void(0);">
 				<div class="block">
 					<label for="target_text">Target text</label>
-					<textarea id="target_text" class="text" tabindex="1"></textarea>
+					<textarea id="target_text" class="form-control" tabindex="1"></textarea>
 				</div>
 				<div class="block">
 					<label for="match_pattern">Regex pattern</label>
-					<input type="text" id="match_pattern" class="text" tabindex="2" />
+					<input type="text" id="match_pattern" class="form-control" tabindex="2" />
 					<div style="text-align: right">
 						<a href="javascript:void(0);" id="copy_match_pattern">Copy</a>
 					</div>
 				</div>
 				<div class="block">
 					<label for="replace_pattern">Replacement</label> 
-					<input type="text" id="replace_pattern" class="text" tabindex="3" />
+					<input type="text" id="replace_pattern" class="form-control" tabindex="3" />
 					<div style="text-align: right">
 						<a href="javascript:void(0);" id="copy_replace_pattern">Copy</a>
 					</div>
 				</div>
 				<div class="block" style="text-align: right;">
-					<input type="submit" value="Test" tabindex="4" class="btn" />
+					<input type="submit" value="TEST" tabindex="4" class="btn btn-primary" />
 				</div>
 			</form>
 			<div class="block">
@@ -160,6 +162,7 @@ pre.error {
 	<script type="text/javascript"
 		src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 	<script type="text/javascript" src="./js/jquery.zclip.min.js"></script>
+	<script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 	<script type="text/javascript">
 
 	var _gaq = _gaq || [];
