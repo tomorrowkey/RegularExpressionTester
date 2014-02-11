@@ -53,7 +53,14 @@ footer {
 	font-size: 17px;
 }
 
+pre {
+	border-width: 0px;
+	background-color: transparent;
+	margin-bottom: 0px;
+}
+
 .result {
+	border-width: 0px;
 }
 
 .highlight {
@@ -138,21 +145,21 @@ pre.error {
 				<label>Matches</label>
 				<div class="result_block">
 					<img src="./img/loading.gif" class="loading" />
-					<span id="matches_result" class="result"></span>&nbsp;
+					<pre id="matches_result" class="result"></pre>
 				</div>
 			</div>
 			<div class="block">
 				<label>Find</label>
 				<div class="result_block">
 					<img src="./img/loading.gif" class="loading" />
-					<span id="find_result" class="result"></span>&nbsp;
+					<pre id="find_result" class="result"></pre>
 				</div>
 			</div>
 			<div class="block">
 				<label>Replaced</label>
 				<div class="result_block">
 					<img src="./img/loading.gif" class="loading" />
-					<span id="replace_result" class="result"></span>&nbsp;
+					<pre id="replace_result" class="result"></pre>
 				</div>
 			</div>
 		</div>
