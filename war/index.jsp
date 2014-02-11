@@ -124,7 +124,7 @@ pre.error {
 						<input type="text" id="match_pattern" class="form-control" tabindex="2" />
 						<span class="input-group-btn">
 							<span class="btn btn-default" id="copy_match_pattern" data-clipboard-target="match_pattern">
-								<i class="fa fa-clipboard"></i>
+								<i class="fa fa-files-o"></i>
 							</span>
 						</span>
 					</div>
@@ -140,7 +140,7 @@ pre.error {
 						<input type="text" id="replace_pattern" class="form-control" tabindex="3" />
 						<span class="input-group-btn">
 							<span class="btn btn-default" id="copy_replace_pattern" data-clipboard-target="replace_pattern">
-								<i class="fa fa-clipboard"></i>
+								<i class="fa fa-files-o"></i>
 							</span>
 						</span>
 					</div>
