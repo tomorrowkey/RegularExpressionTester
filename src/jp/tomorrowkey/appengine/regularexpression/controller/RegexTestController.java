@@ -19,6 +19,7 @@ public class RegexTestController extends Controller {
     protected Navigation run() throws Exception {
         String targetText = param("target_text");
         String matchPattern = param("match_pattern");
+        boolean multiLine = asBoolean("multiline");
         String replacePattern = param("replace_pattern");
 
         if (StringUtil.isEmpty(targetText))
@@ -27,7 +28,8 @@ public class RegexTestController extends Controller {
         if (StringUtil.isEmpty(matchPattern))
             throw new BadParameterException("Regex pattern must not be empty");
 
-        Pattern pattern = Pattern.compile(matchPattern);
+        int flags = multiLine ? Pattern.MULTILINE : 0;
+        Pattern pattern = Pattern.compile(matchPattern, flags);
         Matcher matcher = pattern.matcher(targetText);
 
         RegexTestResult result = new RegexTestResult();

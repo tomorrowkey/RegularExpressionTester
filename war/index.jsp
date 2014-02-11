@@ -35,6 +35,9 @@ header {
 	margin-right: auto;
 }
 label {
+	font-weight: normal;
+}
+label.title {
 	font-size: 1.2em;
 	font-weight: bold;
 }
@@ -111,11 +114,11 @@ pre.error {
 		<div class="contents">
 			<form id="test_form" action="javascript:void(0);">
 				<div class="block">
-					<label for="target_text">Target text</label>
+					<label for="target_text" class="title">Target text</label>
 					<textarea id="target_text" class="form-control" tabindex="1"></textarea>
 				</div>
 				<div class="block">
-					<label for="match_pattern">Regex pattern</label>
+					<label for="match_pattern" class="title">Regex pattern</label>
 					
 					<div class="input-group">
 						<input type="text" id="match_pattern" class="form-control" tabindex="2" />
@@ -126,8 +129,13 @@ pre.error {
 						</span>
 					</div>
 				</div>
+				<div style="text-align:right;">
+					<label>
+						<input type="checkbox" id="multiline" checked /> Multi line
+					</label>
+				</div>
 				<div class="block">
-					<label for="replace_pattern">Replacement</label> 
+					<label for="replace_pattern" class="title">Replacement</label> 
 					<div class="input-group">
 						<input type="text" id="replace_pattern" class="form-control" tabindex="3" />
 						<span class="input-group-btn">
@@ -142,21 +150,21 @@ pre.error {
 				</div>
 			</form>
 			<div class="block">
-				<label>Matches</label>
+				<label class="title">Matches</label>
 				<div class="result_block">
 					<img src="./img/loading.gif" class="loading" />
 					<pre id="matches_result" class="result"></pre>
 				</div>
 			</div>
 			<div class="block">
-				<label>Find</label>
+				<label class="title">Find</label>
 				<div class="result_block">
 					<img src="./img/loading.gif" class="loading" />
 					<pre id="find_result" class="result"></pre>
 				</div>
 			</div>
 			<div class="block">
-				<label>Replaced</label>
+				<label class="title">Replaced</label>
 				<div class="result_block">
 					<img src="./img/loading.gif" class="loading" />
 					<pre id="replace_result" class="result"></pre>
@@ -235,12 +243,14 @@ pre.error {
 						
 							var target_text = $('#target_text').val();
 							var match_pattern = $('#match_pattern').val();
+							var multiline = $('#multiline').prop('checked')
 							var replace_pattern = $('#replace_pattern').val();
 							var url = './regexTest';
 
 							var param = {
 								target_text : target_text,
 								match_pattern : match_pattern,
+								multiline: multiline,
 								replace_pattern : replace_pattern
 							};
 
