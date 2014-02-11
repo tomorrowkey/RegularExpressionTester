@@ -9,6 +9,7 @@
 	rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
+<link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet" />
 <style type="text/css">
 * {
 	font-family: 'Gudea', sans-serif;
@@ -112,7 +113,9 @@ pre.error {
 					<div class="input-group">
 						<input type="text" id="match_pattern" class="form-control" tabindex="2" />
 						<span class="input-group-btn">
-							<button class="btn btn-default" id="copy_match_pattern" data-clipboard-target="match_pattern">Copy</button>
+							<span class="btn btn-default" id="copy_match_pattern" data-clipboard-target="match_pattern">
+								<i class="fa fa-clipboard"></i>
+							</span>
 						</span>
 					</div>
 				</div>
@@ -121,7 +124,9 @@ pre.error {
 					<div class="input-group">
 						<input type="text" id="replace_pattern" class="form-control" tabindex="3" />
 						<span class="input-group-btn">
-							<button class="btn btn-default" id="copy_replace_pattern" data-clipboard-target="replace_pattern">Copy</button>
+							<span class="btn btn-default" id="copy_replace_pattern" data-clipboard-target="replace_pattern">
+								<i class="fa fa-clipboard"></i>
+							</span>
 						</span>
 					</div>
 				</div>
