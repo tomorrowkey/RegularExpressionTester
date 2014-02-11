@@ -108,20 +108,25 @@ pre.error {
 				</div>
 				<div class="block">
 					<label for="match_pattern">Regex pattern</label>
-					<input type="text" id="match_pattern" class="form-control" tabindex="2" />
-					<div style="text-align: right">
-						<a href="javascript:void(0);" id="copy_match_pattern">Copy</a>
+					
+					<div class="input-group">
+						<input type="text" id="match_pattern" class="form-control" tabindex="2" />
+						<span class="input-group-btn">
+							<button class="btn btn-default" id="copy_match_pattern" data-clipboard-target="match_pattern">Copy</button>
+						</span>
 					</div>
 				</div>
 				<div class="block">
 					<label for="replace_pattern">Replacement</label> 
-					<input type="text" id="replace_pattern" class="form-control" tabindex="3" />
-					<div style="text-align: right">
-						<a href="javascript:void(0);" id="copy_replace_pattern">Copy</a>
+					<div class="input-group">
+						<input type="text" id="replace_pattern" class="form-control" tabindex="3" />
+						<span class="input-group-btn">
+							<button class="btn btn-default" id="copy_replace_pattern" data-clipboard-target="replace_pattern">Copy</button>
+						</span>
 					</div>
 				</div>
 				<div class="block" style="text-align: right;">
-					<input type="submit" value="TEST" tabindex="4" class="btn btn-primary" />
+					<input type="submit" value="Test" tabindex="4" class="btn btn-primary" />
 				</div>
 			</form>
 			<div class="block">
@@ -161,7 +166,7 @@ pre.error {
 	</div>
 	<script type="text/javascript"
 		src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
-	<script type="text/javascript" src="./js/jquery.zclip.min.js"></script>
+	<script type="text/javascript" src="./js/ZeroClipboard.min.js"></script>
 	<script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 	<script type="text/javascript">
 
@@ -265,24 +270,23 @@ pre.error {
 								}
 							});
 						});
-				$('#copy_match_pattern').zclip({
-					path : './js/ZeroClipboard.swf',
-					copy : function() {
-						return $('#match_pattern').val();
-					},
-					afterCopy : function() {
-						toast('Copied!');
-					}
+
+				new ZeroClipboard($('#copy_match_pattern'), {
+					moviePath: "/js/ZeroClipboard.swf"
+				}).on('load', function(client) {
+					client.on('complete', function(client, args) {
+						toast('Copied');
+					});
 				});
-				$('#copy_replace_pattern').zclip({
-					path : './js/ZeroClipboard.swf',
-					copy : function() {
-						return $('#replace_pattern').val();
-					},
-					afterCopy : function() {
-						toast('Copied!');
-					}
+				
+				new ZeroClipboard($('#copy_replace_pattern'), {
+					moviePath: "/js/ZeroClipboard.swf"
+				}).on('load', function(client) {
+					client.on('complete', function(client, args) {
+						toast('Copied');
+					});
 				});
+
 			});
 	</script>
 </body>
