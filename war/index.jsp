@@ -172,6 +172,7 @@ pre.error {
 			</div>
 		</div>
 		<footer>
+			<%@include file="social.html" %>
 			<small>
 				<a href="https://github.com/tomorrowkey/RegularExpressionTester" class="minilink">Source code</a> / 
 				<a href="http://blog.tomorrowkey.jp">Blog</a>&nbsp;

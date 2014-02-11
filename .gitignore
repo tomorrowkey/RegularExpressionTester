@@ -12,3 +12,5 @@ eclipse.lib/**
 src/test/java/org/slim3/tester/**
 build/**
 gen/**
+/war/social.html
+
