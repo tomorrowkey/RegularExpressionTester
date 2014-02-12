@@ -4,7 +4,7 @@
     String host = request.getServerName().toString();
     int port = request.getLocalPort();
     String url;
-    if(port == 80) {
+    if(port == 80 || port == 0) {
         url = scheme + "://" + host;
     } else {
         url = scheme + "://" + host + ":" + port;
