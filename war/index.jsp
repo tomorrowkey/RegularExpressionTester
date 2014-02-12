@@ -6,12 +6,10 @@
 <meta charset="UTF-8">
 <meta property="og:title" content="Java Regex Tester" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="http://java-regex-tester.appspot.com/" />
+<meta property="og:url" content="<%@include file="./current_url.jsp" %>" />
 <meta property="og:locale" content="en_US" />
-<meta property="og:image" content="http://java-regex-tester.appspot.com/img/screencapture.png" />
+<meta property="og:image" content="<%@include file="./current_url.jsp" %>/img/screencapture.png" />
 <meta property="og:image:type" content="image/png">
-<meta property="og:image:width" content="896">
-<meta property="og:image:height" content="736">
 <meta property="og:site_name" content="Java Regex Tester" />
 <meta property="og:description" content="Testing your Regular Expression Pattern" />
 <meta property="fb:app_id" content="1423354567909150" />
@@ -194,10 +192,10 @@ pre.error {
 		<footer>
 			<div>
 				<div style="display: inline-block; vertical-align: top;">
-					<div class="fb-like" data-href="http://java-regex-tester.appspot.com/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+					<div class="fb-like" data-href="<%@include file="./current_url.jsp" %>" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
 				</div>
 				<div style="display: inline-block; vertical-align: top;">
-					<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://java-regex-tester.appspot.com/" data-text="Java regex tester" data-related="tomorrowkey" id="tweet_anchor" target="_blank">Tweet</a>
+					<a href="https://twitter.com/share" class="twitter-share-button" data-url="<%@include file="./current_url.jsp" %>" data-text="Java regex tester" data-related="tomorrowkey" id="tweet_anchor" target="_blank">Tweet</a>
 					<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
 				</div>
 			</div>
