@@ -2,8 +2,19 @@
 <%@include file="common.jsp"%>
 <!DOCTYPE html>
 <html>
-<head>
+<head prefix="og: http://ogp.me/ns#">
 <meta charset="UTF-8">
+<meta property="og:title" content="Java Regex Tester" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="http://java-regex-tester.appspot.com/" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:image" content="http://java-regex-tester.appspot.com/img/screencapture.png" />
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="896">
+<meta property="og:image:height" content="736">
+<meta property="og:site_name" content="Java Regex Tester" />
+<meta property="og:description" content="Testing your Regular Expression Pattern" />
+<meta property="fb:app_id" content="1423354567909150" />
 <title>Java regex tester</title>
 <link href='http://fonts.googleapis.com/css?family=Gudea:400,700'
 	rel='stylesheet' type='text/css'>
@@ -105,6 +116,15 @@ pre.error {
 </style>
 </head>
 <body lang="en">
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=1423354567909150";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
+
 	<div class="page">
 		<header>
 			<h1>
@@ -172,7 +192,15 @@ pre.error {
 			</div>
 		</div>
 		<footer>
-			<%@include file="social.html" %>
+			<div>
+				<div style="display: inline-block; vertical-align: top;">
+					<div class="fb-like" data-href="http://java-regex-tester.appspot.com/" data-layout="button_count" data-action="like" data-show-faces="true" data-share="false"></div>
+				</div>
+				<div style="display: inline-block; vertical-align: top;">
+					<a href="https://twitter.com/share" class="twitter-share-button" data-url="http://java-regex-tester.appspot.com/" data-text="Java regex tester" data-related="tomorrowkey" id="tweet_anchor" target="_blank">Tweet</a>
+					<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+				</div>
+			</div>
 			<small>
 				<a href="https://github.com/tomorrowkey/RegularExpressionTester" class="minilink">Source code</a> / 
 				<a href="http://blog.tomorrowkey.jp">Blog</a>&nbsp;
