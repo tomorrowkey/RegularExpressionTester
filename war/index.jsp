@@ -170,21 +170,21 @@ pre.error {
 			<div class="block">
 				<label class="title">Matches</label>
 				<div class="result_block">
-					<img src="./img/loading.gif" class="loading" />
+					<img src="./img/loading.gif" class="loading" alt="loading" />
 					<pre id="matches_result" class="result"></pre>
 				</div>
 			</div>
 			<div class="block">
 				<label class="title">Find</label>
 				<div class="result_block">
-					<img src="./img/loading.gif" class="loading" />
+					<img src="./img/loading.gif" class="loading" alt="loading" />
 					<pre id="find_result" class="result"></pre>
 				</div>
 			</div>
 			<div class="block">
 				<label class="title">Replaced</label>
 				<div class="result_block">
-					<img src="./img/loading.gif" class="loading" />
+					<img src="./img/loading.gif" class="loading" alt="loading" />
 					<pre id="replace_result" class="result"></pre>
 				</div>
 			</div>
