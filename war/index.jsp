@@ -137,7 +137,8 @@ pre.error {
 				</div>
 				<div class="block">
 					<label for="match_pattern" class="title">Regex pattern</label>
-					
+					<a href="http://docs.oracle.com/javase/<%= System.getProperty("java.version").replaceAll("^[0-9]{1}\\.([0-9]{1})\\..+", "$1") %>/docs/api/java/util/regex/Pattern.html" target="_blank">Document</a>
+
 					<div class="input-group">
 						<input type="text" id="match_pattern" class="form-control" tabindex="2" />
 						<span class="input-group-btn">
