@@ -273,7 +273,7 @@ pre.error {
 							var match_pattern = $('#match_pattern').val();
 							var multiline = $('#multiline').prop('checked')
 							var replace_pattern = $('#replace_pattern').val();
-							var url = './regexTest';
+							var url = '/regexTest';
 
 							var param = {
 								target_text : target_text,
@@ -282,43 +282,42 @@ pre.error {
 								replace_pattern : replace_pattern
 							};
 
-							$.ajax({
-								url : url , 
-								data : param , 
-								success : function(data){ 
-									$('.loading').hide();
+							$.post(url, param)
+									.done(
+										function(data){ 
+											$('.loading').hide();
 
-									$('#matches_result').text(data.matches);
-									
-									var match_result = $('#find_result').empty();
-									var text = data.text;
-									var groups = data.groups;
+											$('#matches_result').text(data.matches);
+											
+											var match_result = $('#find_result').empty();
+											var text = data.text;
+											var groups = data.groups;
 
-									var position = 0;
-									for ( var i in data.groups) {
-										var group = groups[i];
-										match_result.append(text.substring(position, group.start).replaceNewLine());
-										position = group.start;
+											var position = 0;
+											for ( var i in data.groups) {
+												var group = groups[i];
+												match_result.append(text.substring(position, group.start).replaceNewLine());
+												position = group.start;
 
-										var highlight = $('<span />').css('background-color',highlight_colors[i % highlight_colors.length]);
-										highlight.append(text.substring(position, group.end).replaceNewLine());
-										match_result.append(highlight);
-										position = group.end;
-									}
-									match_result.append(text.substring(position, text.length).replaceNewLine());
+												var highlight = $('<span />').css('background-color',highlight_colors[i % highlight_colors.length]);
+												highlight.append(text.substring(position, group.end).replaceNewLine());
+												match_result.append(highlight);
+												position = group.end;
+											}
+											match_result.append(text.substring(position, text.length).replaceNewLine());
 
-									$('#replace_result').text(data.replaced_text);
-								} , 
-								error : function(error){
-									$('.loading').hide();
-									if(error.status == 400){
-										$('#matches_result').empty().append($('<pre>').addClass('error').text(error.responseText));
-									}else{
-										$('#matches_result').empty().append($('<pre>').addClass('error').text('unknown error'));
-									}
-									
-								}
-							});
+											$('#replace_result').text(data.replaced_text);
+										}
+									)
+									.fail(
+										function(error){
+											$('.loading').hide();
+											if(error.status == 400){
+												$('#matches_result').empty().append($('<pre>').addClass('error').text(error.responseText));
+											}else{
+												$('#matches_result').empty().append($('<pre>').addClass('error').text('unknown error'));
+											}
+										});
 						});
 
 				new ZeroClipboard($('#copy_match_pattern'), {

@@ -17,6 +17,10 @@ public class RegexTestController extends Controller {
 
     @Override
     protected Navigation run() throws Exception {
+        if (!isPost()) {
+            throw new UnsupportedOperationException();
+        }
+
         String targetText = param("target_text");
         String matchPattern = param("match_pattern");
         boolean multiLine = asBoolean("multiline");
