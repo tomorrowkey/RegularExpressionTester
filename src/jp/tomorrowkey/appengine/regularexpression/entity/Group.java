@@ -1,4 +1,4 @@
-package jp.tomorrowkey.appengine.regularexpression.controller.model;
+package jp.tomorrowkey.appengine.regularexpression.entity;
 
 import net.vvakame.util.jsonpullparser.annotation.JsonKey;
 import net.vvakame.util.jsonpullparser.annotation.JsonModel;

@@ -1,8 +1,8 @@
 package jp.tomorrowkey.appengine.regularexpression.controller;
 
-import jp.tomorrowkey.appengine.regularexpression.controller.model.Group;
-import jp.tomorrowkey.appengine.regularexpression.controller.model.RegexTestResult;
-import jp.tomorrowkey.appengine.regularexpression.controller.model.RegexTestResultGen;
+import jp.tomorrowkey.appengine.regularexpression.entity.Group;
+import jp.tomorrowkey.appengine.regularexpression.entity.RegexTestResult;
+import jp.tomorrowkey.appengine.regularexpression.entity.RegexTestResultGen;
 
 import org.slim3.controller.Controller;
 import org.slim3.controller.Navigation;

@@ -1,5 +1,6 @@
 <%@page pageEncoding="UTF-8" isELIgnored="false"%>
 <%@include file="common.jsp"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head prefix="og: http://ogp.me/ns#">
@@ -19,6 +20,7 @@
 <link href='http://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
 <link href="//netdna.bootstrapcdn.com/bootstrap/3.1.0/css/bootstrap.min.css" rel="stylesheet">
 <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet" />
+<link href="//code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css" rel="stylesheet" />
 <style type="text/css">
 * {
 	font-family: 'Gudea', sans-serif;
@@ -114,6 +116,31 @@ pre.error {
 </style>
 </head>
 <body lang="en">
+
+<div id="share_dialog" class="modal fade">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+        <h4 class="modal-title">Share</h4>
+      </div>
+      <div class="modal-body">
+		<div class="input-group">
+			<input type="text" id="share_url" class="form-control" tabindex="-1" />
+			<span class="input-group-btn">
+				<span class="btn btn-default" id="copy_share_url" data-clipboard-target="share_url">
+					<i class="fa fa-files-o"></i>
+				</span>
+			</span>
+		</div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 	<div id="fb-root"></div>
 	<script>(function(d, s, id) {
 	  var js, fjs = d.getElementsByTagName(s)[0];
@@ -133,14 +160,14 @@ pre.error {
 			<form id="test_form" action="javascript:void(0);">
 				<div class="block">
 					<label for="target_text" class="title">Target text</label>
-					<textarea id="target_text" class="form-control" tabindex="1"></textarea>
+					<textarea id="target_text" class="form-control" tabindex="1"><c:out value="${target_text}" /></textarea>
 				</div>
 				<div class="block">
 					<label for="match_pattern" class="title">Regex pattern</label>
 					<a href="http://docs.oracle.com/javase/<%= System.getProperty("java.version").replaceAll("^[0-9]{1}\\.([0-9]{1})\\..+", "$1") %>/docs/api/java/util/regex/Pattern.html" target="_blank">Document</a>
 
 					<div class="input-group">
-						<input type="text" id="match_pattern" class="form-control" tabindex="2" />
+						<input type="text" id="match_pattern" class="form-control" tabindex="2" value="<c:out value="${match_pattern}" />" />
 						<span class="input-group-btn">
 							<span class="btn btn-default" id="copy_match_pattern" data-clipboard-target="match_pattern">
 								<i class="fa fa-files-o"></i>
@@ -150,13 +177,20 @@ pre.error {
 				</div>
 				<div style="text-align:right;">
 					<label>
-						<input type="checkbox" id="multiline" checked /> Multi line
+						<c:choose>
+							<c:when test="${multiline}">
+								<input type="checkbox" id="multiline" checked /> Multi line
+						    </c:when>
+						  	<c:otherwise>
+								<input type="checkbox" id="multiline" /> Multi line
+							</c:otherwise>
+						</c:choose>
 					</label>
 				</div>
 				<div class="block">
 					<label for="replace_pattern" class="title">Replacement</label> 
 					<div class="input-group">
-						<input type="text" id="replace_pattern" class="form-control" tabindex="3" />
+						<input type="text" id="replace_pattern" class="form-control" tabindex="3" value="<c:out value="${replace_pattern}" />" />
 						<span class="input-group-btn">
 							<span class="btn btn-default" id="copy_replace_pattern" data-clipboard-target="replace_pattern">
 								<i class="fa fa-files-o"></i>
@@ -166,8 +200,10 @@ pre.error {
 				</div>
 				<div class="block" style="text-align: right;">
 					<input type="submit" value="Test" tabindex="4" class="btn btn-primary" />
+					<input type="button" value="Share" tabindex="5" id="share_button" class="btn btn-default" />
 				</div>
 			</form>
+			
 			<div class="block">
 				<label class="title">Matches</label>
 				<div class="result_block">
@@ -212,8 +248,8 @@ pre.error {
 			</small>
 		</footer>
 	</div>
-	<script type="text/javascript"
-		src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
+	<script type="text/javascript" src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
 	<script type="text/javascript" src="./js/ZeroClipboard.min.js"></script>
 	<script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 	<script type="text/javascript">
@@ -268,7 +304,7 @@ pre.error {
 						function() {
 							$('.result').empty();
 							$('.loading').show();
-						
+
 							var target_text = $('#target_text').val();
 							var match_pattern = $('#match_pattern').val();
 							var multiline = $('#multiline').prop('checked')
@@ -320,6 +356,32 @@ pre.error {
 										});
 						});
 
+				$('#share_button').click(function() {
+					var target_text = $('#target_text').val();
+					var match_pattern = $('#match_pattern').val();
+					var multiline = $('#multiline').prop('checked')
+					var replace_pattern = $('#replace_pattern').val();
+					var url = '/share';
+
+					var param = {
+						target_text : target_text,
+						match_pattern : match_pattern,
+						multiline: multiline,
+						replace_pattern : replace_pattern
+					};
+
+					$.post(url, param)
+					.done(function(data) {
+						var url = location.origin + '/?id=' + data.id;
+						$('#share_url').val(url);
+						$('#share_dialog').modal('show');
+					})
+					.fail(function(error) {
+						console.log($('#share_dialog'))
+						console.log(error);
+					}) 
+				});
+				
 				new ZeroClipboard($('#copy_match_pattern'), {
 					moviePath: "/js/ZeroClipboard.swf"
 				}).on('load', function(client) {
@@ -329,6 +391,14 @@ pre.error {
 				});
 				
 				new ZeroClipboard($('#copy_replace_pattern'), {
+					moviePath: "/js/ZeroClipboard.swf"
+				}).on('load', function(client) {
+					client.on('complete', function(client, args) {
+						toast('Copied');
+					});
+				});
+				
+				new ZeroClipboard($('#copy_share_url'), {
 					moviePath: "/js/ZeroClipboard.swf"
 				}).on('load', function(client) {
 					client.on('complete', function(client, args) {

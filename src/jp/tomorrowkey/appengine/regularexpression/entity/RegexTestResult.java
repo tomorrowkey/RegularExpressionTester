@@ -1,4 +1,4 @@
-package jp.tomorrowkey.appengine.regularexpression.controller.model;
+package jp.tomorrowkey.appengine.regularexpression.entity;
 
 import java.util.ArrayList;
 import java.util.List;
