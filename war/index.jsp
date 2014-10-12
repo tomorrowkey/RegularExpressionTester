@@ -207,21 +207,21 @@ pre.error {
 			<div class="block">
 				<label class="title">Matches</label>
 				<div class="result_block">
-					<img src="./img/loading.gif" class="loading" alt="loading" />
+					<img src="/img/loading.gif" class="loading" alt="loading" />
 					<pre id="matches_result" class="result"></pre>
 				</div>
 			</div>
 			<div class="block">
 				<label class="title">Find</label>
 				<div class="result_block">
-					<img src="./img/loading.gif" class="loading" alt="loading" />
+					<img src="/img/loading.gif" class="loading" alt="loading" />
 					<pre id="find_result" class="result"></pre>
 				</div>
 			</div>
 			<div class="block">
 				<label class="title">Replaced</label>
 				<div class="result_block">
-					<img src="./img/loading.gif" class="loading" alt="loading" />
+					<img src="/img/loading.gif" class="loading" alt="loading" />
 					<pre id="replace_result" class="result"></pre>
 				</div>
 			</div>
@@ -250,7 +250,7 @@ pre.error {
 	</div>
 	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
 	<script type="text/javascript" src="//code.jquery.com/ui/1.11.1/jquery-ui.js"></script>
-	<script type="text/javascript" src="./js/ZeroClipboard.min.js"></script>
+	<script type="text/javascript" src="/js/ZeroClipboard.min.js"></script>
 	<script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.1.0/js/bootstrap.min.js"></script>
 	<script type="text/javascript">
 
@@ -356,6 +356,10 @@ pre.error {
 										});
 						});
 
+				if($('#target_text').val().length > 0) {
+					$('#test_form').submit();
+				} 
+
 				$('#share_button').click(function() {
 					var target_text = $('#target_text').val();
 					var match_pattern = $('#match_pattern').val();
@@ -372,7 +376,7 @@ pre.error {
 
 					$.post(url, param)
 					.done(function(data) {
-						var url = location.origin + '/?id=' + data.id;
+						var url = location.origin + '/regex/' + data.id;
 						$('#share_url').val(url);
 						$('#share_dialog').modal('show');
 					})
