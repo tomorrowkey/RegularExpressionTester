@@ -7,6 +7,7 @@ public class IndexController extends Controller {
 
     @Override
     protected Navigation run() throws Exception {
+        requestScope("multiline", true);
         return forward("index.jsp");
     }
 
