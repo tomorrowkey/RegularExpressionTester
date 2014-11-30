@@ -282,8 +282,8 @@ pre.error {
 		}
 		return escaped;
 	}
-	String.prototype.replaceNewLine = function() {
-		return this.replace('\n', '<br ;>');
+	String.prototype.replaceHtmlTags = function() {
+		return this.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/\n/g, '<br />')
 	}
 
 	function toast(sMessage) {
@@ -332,15 +332,15 @@ pre.error {
 											var position = 0;
 											for ( var i in data.groups) {
 												var group = groups[i];
-												match_result.append(text.substring(position, group.start).replaceNewLine());
+												match_result.append(text.substring(position, group.start).replaceHtmlTags());
 												position = group.start;
 
 												var highlight = $('<span />').css('background-color',highlight_colors[i % highlight_colors.length]);
-												highlight.append(text.substring(position, group.end).replaceNewLine());
+												highlight.append(text.substring(position, group.end).replaceHtmlTags());
 												match_result.append(highlight);
 												position = group.end;
 											}
-											match_result.append(text.substring(position, text.length).replaceNewLine());
+											match_result.append(text.substring(position, text.length).replaceHtmlTags());
 
 											$('#replace_result').text(data.replaced_text);
 										}
