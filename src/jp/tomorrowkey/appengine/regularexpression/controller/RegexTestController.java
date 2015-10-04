@@ -32,35 +32,44 @@ public class RegexTestController extends Controller {
         if (StringUtil.isEmpty(matchPattern))
             throw new BadParameterException("Regex pattern must not be empty");
 
-        int flags = multiLine ? Pattern.MULTILINE : 0;
-        Pattern pattern = Pattern.compile(matchPattern, flags);
-        Matcher matcher = pattern.matcher(targetText);
-
-        RegexTestResult result = new RegexTestResult();
-
-        result.setText(targetText);
-        result.setMatches(matcher.matches());
-        matcher.reset();
         try {
-            result.setReplacedText(matcher.replaceAll(replacePattern));
-        } catch (IllegalArgumentException e) {
-            throw new BadParameterException(e.getMessage());
+            int flags = multiLine ? Pattern.MULTILINE : 0;
+            Pattern pattern = Pattern.compile(matchPattern, flags);
+            Matcher matcher = pattern.matcher(targetText);
+
+            RegexTestResult result = new RegexTestResult();
+
+            result.setText(targetText);
+            result.setMatches(matcher.matches());
+            matcher.reset();
+            try {
+                result.setReplacedText(matcher.replaceAll(replacePattern));
+            } catch (IllegalArgumentException e) {
+                throw new BadParameterException(e.getMessage());
+            }
+
+            matcher.reset();
+            while (matcher.find()) {
+                String matchText = matcher.group();
+                int start = matcher.start();
+                int end = matcher.end();
+                result.addGroup(new Group(matchText, start, end));
+            }
+
+            response.setStatus(200);
+            response.setContentType("application/json");
+            response.setCharacterEncoding("utf-8");
+
+            PrintWriter writer = response.getWriter();
+            RegexTestResultGen.encode(writer, result);
+        } catch (Exception e) {
+            StringBuilder sb = new StringBuilder();
+            sb.append("targetText=").append(targetText).append("\n");
+            sb.append("matchPattern=").append(matchPattern).append("\n");
+            sb.append("multiLine=").append(multiLine).append("\n");
+            sb.append("replacePattern=").append(replacePattern).append("\n");
+            throw new RuntimeException(sb.toString(), e);
         }
-
-        matcher.reset();
-        while (matcher.find()) {
-            String matchText = matcher.group();
-            int start = matcher.start();
-            int end = matcher.end();
-            result.addGroup(new Group(matchText, start, end));
-        }
-
-        response.setStatus(200);
-        response.setContentType("application/json");
-        response.setCharacterEncoding("utf-8");
-
-        PrintWriter writer = response.getWriter();
-        RegexTestResultGen.encode(writer, result);
 
         return null;
     }
